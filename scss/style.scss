@@ -4,7 +4,7 @@
   @return $num / ($num * 0 + 1); // 10px / 1px = 10
 }
 
-@mixin adaptive-property($prop, $minSize, $maxSize, $fromUnits: 'vw', $maxWidth: 1400px) {
+@mixin adaptive-property($prop, $minSize, $maxSize, $maxWidth: 1400px, $fromUnits: 'vw', ) {
   #{$prop}: min(calc(#{$minSize} + #{parseInt($maxSize - $minSize)} * ((100#{$fromUnits} - 320px) / #{parseInt($maxWidth)  - 320})), #{$maxSize});
 }
 
@@ -154,6 +154,7 @@ a {
     top: 100%;
     min-width: 200px;
     max-height: 0; //  height0->auto animation doesn't work
+    padding: 0 5px;
     overflow: hidden;
     opacity: 0;
     border-left: 1px solid var(--light-grey);
@@ -178,7 +179,7 @@ a {
   &__item {
     padding: 8px 11px;
 
-    ~.drop-down__item {
+    &~& {
       border-top: 1px solid var(--light-grey);
     }
   }
@@ -326,7 +327,7 @@ a {
     flex-direction: column;
     // justify-content: space-between;
     gap: 19px;
-    @include adaptive-property(gap, 10px, 19px, $maxWidth: 768px);
+    @include adaptive-property(gap, 10px, 19px, 768px);
     flex-basis: 22%;
     // @include adaptive-property-increase(flex-basis, 470px, 220px, $maxWidth: 1000px);
 
@@ -336,7 +337,7 @@ a {
     display: flex;
     align-items: center;
     gap: 19px;
-    @include adaptive-property(gap, 10px, 19px, $maxWidth: 768px);
+    @include adaptive-property(gap, 10px, 19px, 768px);
     // justify-content: space-between;
   }
 
@@ -474,8 +475,8 @@ a {
   }
 
   .slick-list {
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: -1.5%;
+    margin-right: -1.5%;
   }
 
   .slick-arrow__img-next {
@@ -589,7 +590,7 @@ a {
 
   &__text {
     flex-basis: 61.2%;
-    @include adaptive-property(font-size, 14px, 16px, $maxWidth: 1000);
+    @include adaptive-property(font-size, 14px, 16px, 1000px);
     line-height: 1.625em;
     color: var(--grey-text);
 
@@ -649,7 +650,7 @@ a {
     justify-content: space-between;
     padding-bottom: 40px;
     row-gap: 25px;
-    @include adaptive-property(column-gap, 15px, 25px, $maxWidth: 768px)
+    @include adaptive-property(column-gap, 15px, 25px, 768px)
   }
 
   &__col-text {
